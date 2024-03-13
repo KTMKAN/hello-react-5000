@@ -1,8 +1,9 @@
 import '@/src/styles/main.scss';
 
-import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import router from '@/src/router';
+
+import { QueryClient, QueryClientProvider } from "react-query"
 
 // vw, vh 스크롤영역 처리
 function setScreenSize(e: any) {
@@ -16,9 +17,13 @@ function setScreenSize(e: any) {
 window.addEventListener('resize', (e) => setScreenSize(e));
 window.addEventListener('load', (e) => setScreenSize(e));
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <RouterProvider router={router} />
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 
