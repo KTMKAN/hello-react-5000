@@ -14,17 +14,14 @@ function CommonTable(props: ICommonTableUIProps) {
             <table>
                 <tbody>
                     {
-                        items.map((item: JsonObject) => {
+                        items.map((item: JsonObject, idx: number) => {
                             let keys = Object.keys(item);
 
                             return (
-                                <tr>
+                                <tr key={idx}>
                                     {
                                         keys.map((key: string, idx: number) => {
-                                            if (typeof item[key] == "string" || typeof item[key] == "number") {
-                                                return <td key={idx}>{`${key}: ${item[key]}`}</td>
-                                            }
-                                            return <td></td>;
+                                            return <td key={idx}>{`${key}: ${item[key]}`}</td>
                                         })
                                     }
                                 </tr>
