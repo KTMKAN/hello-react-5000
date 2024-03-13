@@ -4,6 +4,8 @@ import useTestPageB from "@/src/hooks/useTestPageB";
 import useMember from "@/src/queries/member/useMember";
 import useUser from "@/src/queries/user/useUser";
 
+import { CommonTable } from "@/src/components/CommonTable";
+
 function TestPageA() {
     const { state, plusCount, minusCount } = useTestPageA({count: 5});
     const { name, age, bears, handleChangeName, handleChangeAge, handleClickBtnIncrease } = useTestPageB({});
@@ -55,7 +57,9 @@ function TestPageA() {
                     {
                         getMember.isLoading ? <div>...isLoading</div>
                         : getMember.isError ? <div>!! isError !!</div>
-                        : <div>{getMember.data.length}</div>
+                        : (
+                            <CommonTable items={getMember.data}></CommonTable>
+                        )
                     }
                 </div>
                 <br/>
@@ -65,7 +69,9 @@ function TestPageA() {
                     {
                         getUser.isLoading ? <div>...isLoading</div>
                         : getUser.isError ? <div>!! isError !!</div>
-                        : <div>{getUser.data.length}</div>
+                        : (
+                            <CommonTable items={getUser.data}></CommonTable>
+                        )
                     }
                 </div>
             </div>
